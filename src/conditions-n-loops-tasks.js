@@ -21,8 +21,11 @@
  *  0  => true
  *  -5 => false
  */
-function isPositive(/* number */) {
-  throw new Error('Not implemented');
+function isPositive(number) {
+  if (number >= 0) {
+    return true;
+  }
+  return false;
 }
 
 /**
@@ -38,8 +41,14 @@ function isPositive(/* number */) {
  *  -5, 0, 5      => 5
  *  -0.1, 0, 0.2  => 0.2
  */
-function getMaxNumber(/* a, b, c */) {
-  throw new Error('Not implemented');
+function getMaxNumber(a, b, c) {
+  if (a > b && a > c) {
+    return a;
+  }
+  if (b > a && b > c) {
+    return b;
+  }
+  return c;
 }
 
 /**
@@ -84,6 +93,21 @@ function canQueenCaptureKing(/* queen, king */) {
  */
 function isIsoscelesTriangle(/* a, b, c */) {
   throw new Error('Not implemented');
+  // if (a !== b && a !== c && b !== c) {
+  //   return false, 'This is not an isosceles triangle!';
+  // }
+  // if (a === c) {
+  //   return true, console.log('Isosceles Triangle');
+  // }
+  // if (b === c) {
+  //   return true, 'This is an isosceles triangle!';
+  // }
+  // if (a === b) {
+  //   return true, 'This is an isosceles triangle!';
+  // }
+  // if ((a === b || c === 0) && (a === c || b === 0) && (b === c || a === 0)) {
+  //   return false, 'This is not an isosceles triangle!';
+  // }
 }
 
 /**
@@ -293,8 +317,10 @@ function shuffleChar(/* str, iterations */) {
  * @param {number} number The source number
  * @returns {number} The nearest larger number, or original number if none exists.
  */
-function getNearestBigger(/* number */) {
-  throw new Error('Not implemented');
+function getNearestBigger(number) {
+  const inNumber = number.sort((a, b) => b - a);
+  const largeNam = inNumber.join('');
+  return largeNam;
 }
 
 module.exports = {
