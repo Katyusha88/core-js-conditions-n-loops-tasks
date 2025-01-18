@@ -91,23 +91,11 @@ function canQueenCaptureKing(/* queen, king */) {
  *  2, 2, 5   => false
  *  3, 0, 3   => false
  */
-function isIsoscelesTriangle(/* a, b, c */) {
-  throw new Error('Not implemented');
-  // if (a !== b && a !== c && b !== c) {
-  //   return false, 'This is not an isosceles triangle!';
-  // }
-  // if (a === c) {
-  //   return true, console.log('Isosceles Triangle');
-  // }
-  // if (b === c) {
-  //   return true, 'This is an isosceles triangle!';
-  // }
-  // if (a === b) {
-  //   return true, 'This is an isosceles triangle!';
-  // }
-  // if ((a === b || c === 0) && (a === c || b === 0) && (b === c || a === 0)) {
-  //   return false, 'This is not an isosceles triangle!';
-  // }
+function isIsoscelesTriangle(a, b, c) {
+  if (a <= 0 || b <= 0 || c <= 0) return false;
+  if (a + b <= c || a + c <= b || c + b <= a) return false;
+  if (a === b || a === c || b === c) return true;
+  return false;
 }
 
 /**
@@ -124,8 +112,31 @@ function isIsoscelesTriangle(/* a, b, c */) {
  *  10  => X
  *  26  => XXVI
  */
-function convertToRomanNumerals(/* num */) {
-  throw new Error('Not implemented');
+function convertToRomanNumerals(num) {
+  // throw new Error('Not implemented');
+  const sumbol = {
+    I: 1,
+    V: 5,
+    X: 10,
+    L: 50,
+    C: 100,
+    D: 500,
+    M: 1000,
+  };
+  let result = 0;
+  if (num === 0) {
+    return '';
+  }
+  for (let i = 0; i < num.length; i += 1) {
+    const cur = sumbol[num[i]];
+    const next = sumbol[num[i + 1]];
+
+    if (cur < next) {
+      result += next - cur;
+      i += 1;
+    } else result += cur;
+  }
+  return result;
 }
 
 /**
@@ -177,8 +188,9 @@ function isPalindrome(/* str */) {
  *  'qwerty', 'Q'     => -1
  *  'qwerty', 'p'     => -1
  */
-function getIndexOf(/* str, letter */) {
-  throw new Error('Not implemented');
+function getIndexOf(str, letter) {
+  // throw new Error('Not implemented');
+  return str.indexOf(letter);
 }
 
 /**
@@ -196,8 +208,12 @@ function getIndexOf(/* str, letter */) {
  *  12345, 0    => false
  *  12345, 6    => false
  */
-function isContainNumber(/* num, digit */) {
-  throw new Error('Not implemented');
+function isContainNumber(num, digit) {
+  const number = String(num);
+  for (let i = 0; i < number.length; i += 1) {
+    if (number[i] === String(digit)) return true;
+  }
+  return false;
 }
 
 /**
@@ -213,8 +229,23 @@ function isContainNumber(/* num, digit */) {
  *  [2, 3, 9, 5] => 2       => 2 + 3 === 5 then balance element is 9 and its index = 2
  *  [1, 2, 3, 4, 5] => -1   => no balance element
  */
-function getBalanceIndex(/* arr */) {
-  throw new Error('Not implemented');
+function getBalanceIndex(arr) {
+  // throw new Error('Not implemented');
+  const n = arr.length;
+  for (let i = 1; i < n; i += 1) {
+    let leftSum = 0;
+    for (let j = i - 1; j >= 0; j -= 1) {
+      leftSum += arr[j];
+    }
+    let rightSum = 0;
+    for (let k = i + 1; k < n; k += 1) {
+      rightSum += arr[k];
+    }
+    if (leftSum === rightSum) {
+      return arr[i];
+    }
+  }
+  return -1;
 }
 
 /**
@@ -317,10 +348,8 @@ function shuffleChar(/* str, iterations */) {
  * @param {number} number The source number
  * @returns {number} The nearest larger number, or original number if none exists.
  */
-function getNearestBigger(number) {
-  const inNumber = number.sort((a, b) => b - a);
-  const largeNam = inNumber.join('');
-  return largeNam;
+function getNearestBigger(/* number */) {
+  throw new Error('Not implemented');
 }
 
 module.exports = {
