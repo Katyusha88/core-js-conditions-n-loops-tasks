@@ -154,8 +154,45 @@ function convertToRomanNumerals(num) {
  *  '10,5'    => 'one zero point five'
  *  '1950.2'  => 'one nine five zero point two'
  */
-function convertNumberToString(/* numberStr */) {
-  throw new Error('Not implemented');
+function convertNumberToString(numberStr) {
+  let result = '';
+
+  const word = (n) => {
+    switch (n) {
+      case '0':
+        return 'zero';
+      case '1':
+        return 'one';
+      case '2':
+        return 'two';
+      case '3':
+        return 'three';
+      case '4':
+        return 'four';
+      case '5':
+        return 'five';
+      case '6':
+        return 'six';
+      case '7':
+        return 'seven';
+      case '8':
+        return 'eight';
+      case '9':
+        return 'nine';
+      case '.':
+        return 'point';
+      case ',':
+        return 'point';
+      case '-':
+        return 'minus';
+      default:
+        return 'error';
+    }
+  };
+  for (let i = 0; i < numberStr.length; i += 1) {
+    result += word(numberStr[i]) + (i < numberStr.length - 1 ? ' ' : '');
+  }
+  return result;
 }
 
 /**
@@ -235,20 +272,18 @@ function isContainNumber(num, digit) {
  *  [1, 2, 3, 4, 5] => -1   => no balance element
  */
 function getBalanceIndex(arr) {
-  // throw new Error('Not implemented');
-  const n = arr.length;
-  for (let i = 1; i < n; i += 1) {
-    let leftSum = 0;
-    for (let j = i - 1; j >= 0; j -= 1) {
-      leftSum += arr[j];
+  let totalSum = 0;
+  let Sum = 0;
+
+  for (let i = 0; i < arr.length; i += 1) {
+    totalSum += arr[i];
+  }
+  for (let i = 0; i < arr.length; i += 1) {
+    totalSum -= arr[i];
+    if (totalSum === Sum) {
+      return i;
     }
-    let rightSum = 0;
-    for (let k = i + 1; k < n; k += 1) {
-      rightSum += arr[k];
-    }
-    if (leftSum === rightSum) {
-      return arr[i];
-    }
+    Sum += arr[i];
   }
   return -1;
 }
